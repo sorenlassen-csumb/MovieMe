@@ -11,19 +11,27 @@ import org.springframework.data.neo4j.config.Neo4jConfiguration;
 import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.movie.me.service.UserService;
+import com.movie.me.service.UserServiceImpl;
 
+@EnableAutoConfiguration
+@org.springframework.context.annotation.Configuration
 @EnableNeo4jRepositories(basePackages = "com.movie.me.repository")
 @EnableTransactionManagement
 @SpringBootApplication
 public class MovieMeSpringConfiguration extends Neo4jConfiguration {
-	
+	@Bean
+	public UserService getUserService() {
+		return new UserServiceImpl();
+	}
+
 	@Bean
 	public Configuration getConfiguration() {
 	   Configuration config = new Configuration();
 	   config
 	       .driverConfiguration()
 	       .setDriverClassName("org.neo4j.ogm.drivers.http.driver.HttpDriver")
-	       .setURI("http://neo4j:neo4j@localhost:7474"); // http://user:password@url:port
+	       .setURI("http://neo4j:MovieMe@localhost:7474");
 	   return config;
 	}
 
@@ -31,7 +39,7 @@ public class MovieMeSpringConfiguration extends Neo4jConfiguration {
 	public SessionFactory getSessionFactory() {
 	    return new SessionFactory(getConfiguration(), "com.movie.me.domain");
 	}
-	
+
 	public static void main(String[] args) throws Exception {
         SpringApplication.run(MovieMeSpringConfiguration.class, args);
     }

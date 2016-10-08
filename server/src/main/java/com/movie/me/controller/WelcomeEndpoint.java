@@ -1,4 +1,4 @@
-package com.movie.me;
+package com.movie.me.controller;
 
 import java.util.HashMap;
 import java.util.Map;
