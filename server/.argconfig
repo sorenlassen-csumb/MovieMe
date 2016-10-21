@@ -1,4 +1,4 @@
 {
-    "conduit_uri" : "https://csumbse.net/api/",
+    "conduit_uri" : "http://csumbse.net/api/",
     "git.default-relative-commit" : "HEAD^"
 }
