@@ -1,10 +1,12 @@
 package com.movie.me.controller;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.movie.me.domain.User;
 import com.movie.me.service.UserService;
@@ -22,4 +24,9 @@ public class UserController {
 
 		return user;
 	}
+
+    @RequestMapping(value="/user/search", method=RequestMethod.GET, produces="application/json")
+    public List<User> searchForUser(@RequestParam(value="name") String name) {
+        return userService.findByNameLike(name);
+    }
 }

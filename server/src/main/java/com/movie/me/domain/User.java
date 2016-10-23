@@ -7,30 +7,33 @@ import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.Relationship;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @NodeEntity(label="User")
 public class User {
-	@GraphId
-	private Long id;
-	
+    @GraphId
+    private Long id;
+
 	@Property(name="NAME")
 	private String name;
-	
+
 	@Property(name="AGE")
 	private String age;
-	
+
+    @JsonIgnore
 	@Property(name="EMAIL")
 	private String email;
-	
+
 	@Relationship(type="LIKES")
 	private Set<Movie> moviesLiked;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 	public String getName() {
 		return name;
@@ -55,7 +58,7 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public Set<Movie> getMoviesLiked() {
 		return moviesLiked;
 	}
@@ -68,6 +71,4 @@ public class User {
 	public String toString() {
 		return this.email;
 	}
-	
-
 }
