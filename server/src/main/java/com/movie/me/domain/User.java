@@ -2,20 +2,23 @@ package com.movie.me.domain;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.Relationship;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-@NodeEntity(label="User")
+@NodeEntity(label="USER")
 public class User {
-    @GraphId
-    private Long id;
+	@GraphId
+	private Long id;
 
+	@JsonIgnore
 	@Property(name="NAME")
 	private String name;
+
+	@Property(name="PHOTO_URI")
+	private String photoURI;
 
 	@Property(name="AGE")
 	private String age;
@@ -41,14 +44,6 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getAge() {
-		return age;
-	}
-
-	public void setAge(String age) {
-		this.age = age;
 	}
 
 	public String getEmail() {

@@ -22,6 +22,8 @@ public class UserController {
 		Long uId = new Long(id);
 		User user = userService.findById(new Long(uId));
 
+		System.out.println(user.getName());
+
 		return user;
 	}
 

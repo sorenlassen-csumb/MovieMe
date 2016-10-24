@@ -20,7 +20,8 @@ except:
     pass
 
 userList = [
-    {"NAME" : "Hugo Argueta", "AGE" : "22", "EMAIL" : "hugoargueta94@gmail.com"}
+    {"NAME" : "Hugo Argueta", "AGE" : "22", "EMAIL" : "hugoargueta94@gmail.com"},
+    {"NAME" : "Samuel Villavicencio", "AGE" : "21", "EMAIL" : "samuelrey010@gmail.com"}
 ]
 
 movieList = [{"TITLE" : "Django Unchained", "RATING" : "8.5", "RELEASE_DATE" : "25 December 2012"},
