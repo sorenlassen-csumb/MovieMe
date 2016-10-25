@@ -1,5 +1,7 @@
 package com.movie.me;
 
+import com.movie.me.service.MovieService;
+import com.movie.me.service.MovieServiceImpl;
 import org.neo4j.ogm.config.Configuration;
 import org.neo4j.ogm.session.SessionFactory;
 import org.springframework.boot.SpringApplication;
@@ -22,6 +24,11 @@ public class MovieMeSpringConfiguration extends Neo4jConfiguration {
 	@Bean
 	public UserService getUserService() {
 		return new UserServiceImpl();
+	}
+
+	@Bean
+	public MovieService getMovieService() {
+		return new MovieServiceImpl();
 	}
 
 	@Bean
