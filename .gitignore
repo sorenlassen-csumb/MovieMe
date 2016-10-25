@@ -8,10 +8,14 @@ target
 
 .classpath
 
-server/.idea/
+.metadata
 
-server/.pydevproject
+.idea
 
-server/movieme.iml
+.recommenders
 
-server/pyscripts/extract-ids.py
+.pydevproject
+
+movieme.iml
+
+extract-ids.py
