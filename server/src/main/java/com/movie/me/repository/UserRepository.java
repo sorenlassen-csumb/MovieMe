@@ -19,4 +19,5 @@ public interface UserRepository extends GraphRepository<User> {
     @Query("MATCH (:USER {ID:{userid}}) " +
             "-[:LIKES]->(m:MOVIE) " +
             "RETURN m")
+    List<Movie> getMoviesLikedBy(@Param("userid") String userid);
 }
