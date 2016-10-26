@@ -1,3 +1,5 @@
+general:
+    build_dir: server
 test:
    post:
        - mkdir -p $CIRCLE_TEST_REPORTS/reports/

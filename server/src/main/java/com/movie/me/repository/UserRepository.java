@@ -7,6 +7,7 @@ import org.springframework.data.neo4j.repository.GraphRepository;
 import org.springframework.stereotype.Repository;
 
 import com.movie.me.domain.User;
+import com.movie.me.domain.Movie;
 
 @Repository
 public interface UserRepository extends GraphRepository<User> {
@@ -14,4 +15,8 @@ public interface UserRepository extends GraphRepository<User> {
             "WHERE u.NAME =~ ('(?i).*'+{name}+'.*')" + 
             "RETURN u")
     List<User> findByNameLike(@Param("name") String name);
+
+    @Query("MATCH (:USER {ID:{userid}}) " +
+            "-[:LIKES]->(m:MOVIE) " +
+            "RETURN m")
 }
