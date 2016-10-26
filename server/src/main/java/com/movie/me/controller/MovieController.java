@@ -1,7 +1,6 @@
 package com.movie.me.controller;
 
 import com.movie.me.domain.Movie;
-import com.movie.me.domain.User;
 import com.movie.me.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,9 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * Created by hargueta on 10/25/16.
- */
 
 @RestController
 @RequestMapping("/")
@@ -22,7 +18,7 @@ public class MovieController {
     MovieService movieService;
 
     @RequestMapping(value="/movie/search", method= RequestMethod.GET, produces="application/json")
-    public List<Movie> searchForUser(@RequestParam(value="title") String title) {
+    public List<Movie> searchForMovie(@RequestParam(value="title") String title) {
         return movieService.findByTitleLike(title);
     }
 }

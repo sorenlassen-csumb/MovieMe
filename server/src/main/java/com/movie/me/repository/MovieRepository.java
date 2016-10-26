@@ -8,9 +8,6 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-/**
- * Created by hargueta on 10/25/16.
- */
 public interface MovieRepository extends GraphRepository<Movie> {
     @Query("MATCH (m:MOVIE) " +
             "WHERE m.TITLE =~ ('(?i).*'+{title}+'.*')" +

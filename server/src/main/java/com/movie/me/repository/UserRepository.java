@@ -20,4 +20,5 @@ public interface UserRepository extends GraphRepository<User> {
             "-[:LIKES]->(m:MOVIE) " +
             "RETURN m")
     List<Movie> getMoviesLikedBy(@Param("userid") String userid);
+
 }
