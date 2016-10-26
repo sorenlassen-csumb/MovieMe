@@ -9,3 +9,6 @@ test:
 notify:
    webhooks:
        - url: http://csumbse.net/harbormaster/hook/circleci/
+machine:
+    services:
+        - neo4j

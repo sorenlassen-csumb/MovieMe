@@ -13,7 +13,9 @@ public class User {
 	@GraphId
 	private Long id;
 
-	@JsonIgnore
+    @Property(name="USERID")
+    private String userid;
+
 	@Property(name="NAME")
 	private String name;
 
@@ -23,7 +25,7 @@ public class User {
 	@Property(name="AGE")
 	private String age;
 
-    @JsonIgnore
+	@JsonIgnore
 	@Property(name="EMAIL")
 	private String email;
 
@@ -36,6 +38,14 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUserId() {
+        return userid;
+    }
+
+    public void setUserId(String userid) {
+        this.userid = userid;
     }
 
 	public String getName() {

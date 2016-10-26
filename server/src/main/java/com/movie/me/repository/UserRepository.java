@@ -11,14 +11,20 @@ import com.movie.me.domain.Movie;
 
 @Repository
 public interface UserRepository extends GraphRepository<User> {
-    @Query("MATCH (u:User) " + 
+    @Query("MATCH (u:USER) " + 
             "WHERE u.NAME =~ ('(?i).*'+{name}+'.*')" + 
             "RETURN u")
     List<User> findByNameLike(@Param("name") String name);
 
-    @Query("MATCH (:USER {ID:{userid}}) " +
+    @Query("MATCH (:USER {USERID:{userid}}) " +
             "-[:LIKES]->(m:MOVIE) " +
             "RETURN m")
-    List<Movie> getMoviesLikedBy(@Param("userid") String userid);
+    List<Movie> retrieveMoviesLikedBy(@Param("userid") String userid);
 
+    @Query("MATCH (u:USER {USERID:{userid}}), " +
+            "(m:MOVIE {IMDBID:{imdbid}}) " +
+            "CREATE (u)-[:LIKES]->(m) " +
+            "RETURN m")
+    Movie addUserLikesMovie(@Param("userid") String userid,
+            @Param("imdbid") String imdbid);
 }
