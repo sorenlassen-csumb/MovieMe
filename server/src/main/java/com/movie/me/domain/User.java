@@ -8,6 +8,8 @@ import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.Relationship;
 
+import com.movie.me.domain.Movie;
+
 @NodeEntity(label="USER")
 public class User {
 	@GraphId

@@ -23,7 +23,7 @@ public interface UserRepository extends GraphRepository<User> {
 
     @Query("MATCH (u:USER {USERID:{userid}}), " +
             "(m:MOVIE {IMDBID:{imdbid}}) " +
-            "CREATE (u)-[:LIKES]->(m) " +
+            "MERGE (u)-[:LIKES]->(m) " +
             "RETURN m")
     Movie addUserLikesMovie(@Param("userid") String userid,
             @Param("imdbid") String imdbid);
