@@ -1,14 +1,20 @@
 general:
     build_dir: server
-test:
-   post:
-       - mkdir -p $CIRCLE_TEST_REPORTS/reports/
-       - cp ./*/*-reports/*.xml $CIRCLE_TEST_REPORTS/reports/
-       - mvn verify
-       - bash <(curl -s https://codecov.io/bash)
-notify:
-   webhooks:
-       - url: http://csumbse.net/harbormaster/hook/circleci/
+dependencies:
+    pre:
+        - wget -O - https://debian.neo4j.org/neotechnology.gpg.key | sudo apt-key add -
+        - echo 'deb http://debian.neo4j.org/repo stable/' | sudo tee /etc/apt/sources.list.d/neo4j.list
+        - sudo apt-get update
+        - sudo apt-get install neo4j
 machine:
     services:
         - neo4j
+test:
+    post:
+        - mkdir -p $CIRCLE_TEST_REPORTS/reports/
+        - cp ./*/*-reports/*.xml $CIRCLE_TEST_REPORTS/reports/
+        - mvn verify
+        - bash <(curl -s https://codecov.io/bash)
+notify:
+    webhooks:
+        - url: http://csumbse.net/harbormaster/hook/circleci/
