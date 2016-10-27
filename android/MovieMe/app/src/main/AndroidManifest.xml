@@ -15,6 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SearchMovie" />
+        <activity android:name=".MovieSearchResults" />
+        <activity android:name=".MovieInfo"></activity>
     </application>
 
 </manifest>

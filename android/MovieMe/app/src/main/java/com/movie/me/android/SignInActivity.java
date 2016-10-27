@@ -19,6 +19,8 @@ import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+import static android.support.v4.app.ActivityCompat.startActivityForResult;
+
 public class SignInActivity extends  AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
     private static final int RC_SIGN_IN = 9001;
@@ -162,6 +164,8 @@ public class SignInActivity extends  AppCompatActivity implements GoogleApiClien
             GoogleSignInAccount acct = result.getSignInAccount();
             mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
             updateUI(true);
+//            Intent i = new Intent(this, SearchMovie.class);
+//            startActivity(i);
         } else {
             // Signed out, show unauthenticated UI.
             updateUI(false);

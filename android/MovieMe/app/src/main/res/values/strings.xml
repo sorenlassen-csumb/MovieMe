@@ -20,10 +20,14 @@
     <!-- Google Play Services error for Toast -->
     <string name="play_services_error_fmt">Google Play Services Error: %i</string>
 
+    <!-- Text input -->
+    <string name="search_movie_text">Enter movie title</string>
+
     <!-- Button labels -->
     <string name="sign_out">Sign Out</string>
     <string name="disconnect">Disconnect</string>
     <string name="refresh_token">Get Fresh Token</string>
+    <string name="search_movie_button_text">Search Movie</string>
 
     <!-- Content Description for images -->
     <string name="desc_google_icon">Google Logo</string>
