@@ -164,8 +164,8 @@ public class SignInActivity extends  AppCompatActivity implements GoogleApiClien
             GoogleSignInAccount acct = result.getSignInAccount();
             mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
             updateUI(true);
-//            Intent i = new Intent(this, SearchMovie.class);
-//            startActivity(i);
+            Intent i = new Intent(this, SearchMovie.class);
+            startActivity(i);
         } else {
             // Signed out, show unauthenticated UI.
             updateUI(false);
@@ -176,7 +176,9 @@ public class SignInActivity extends  AppCompatActivity implements GoogleApiClien
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.sign_in_button:
-                signIn();
+                Intent i = new Intent(this, SearchMovie.class);
+                startActivity(i);
+//                signIn();
                 break;
             case R.id.sign_out_button:
                 signOut();

@@ -4,18 +4,17 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="107dp"
+        android:layout_height="wrap_content"
         app:srcCompat="@mipmap/ic_launcher"
-        android:id="@+id/movie_poster_image"
+        android:id="@+id/poster_image"
         android:layout_weight="0.23" />
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:id="@+id/movie_title"
+        android:layout_height="wrap_content"
+        android:id="@+id/title"
         android:layout_weight="1.00" />
 </LinearLayout>
