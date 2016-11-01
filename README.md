@@ -1,5 +1,7 @@
 # MovieMe
 
+![Build Status](https://circleci.com/gh/samuelrey/MovieMe.svg?style=shield&circle-token=2f03541c66b95f4685882d50349c0f45a2facb7a)
+
 You will need Java 8 to run the Neo4j instance.
 
 1. Download Neo4j with command: wget http://dist.neo4j.org/neo4j-community-3.0.6-unix.tar.gz
