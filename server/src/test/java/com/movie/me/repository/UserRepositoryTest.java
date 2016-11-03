@@ -1,4 +1,4 @@
-package com.movie.me.service;
+package com.movie.me.repository;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
