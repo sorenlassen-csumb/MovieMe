@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -46,10 +47,13 @@ public class MovieSearchResults extends AppCompatActivity{
         Log.d("MovieList", movieList.toString());
         movieRecyclerView = (RecyclerView) findViewById(R.id.movie_result);
 
-        layoutManager = new LinearLayoutManager(this);
+//        layoutManager = new LinearLayoutManager(this);
+
+        layoutManager = new GridLayoutManager(this, 2);
 
         movieListAdapter = new MovieListAdapter(this, movieList);
 
+        movieRecyclerView.setHasFixedSize(true);
         movieRecyclerView.setAdapter(movieListAdapter);
         movieRecyclerView.setLayoutManager(layoutManager);
 

@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.movie.me.android.R;
 import com.movie.me.android.domain.Movie;
+import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
 import java.util.List;
@@ -44,7 +45,12 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     @Override
     public void onBindViewHolder(MovieViewHolder holder, int position) {
         Movie currMovie = movieResultList.get(position);
-        holder.setMoviePoster(currMovie.getPoster());
+//        if(currMovie.getPosterBitmap() == null) {
+//            holder.setMoviePoster(currMovie);
+//        } else {
+//            holder.moviePoster.setImageBitmap(currMovie.getPosterBitmap());
+//        }
+        Picasso.with(context).load(currMovie.getPoster()).resize(100, 150).centerCrop().into(holder.moviePoster);
         holder.movieTitle.setText(currMovie.getTitle());
     }
 
@@ -63,20 +69,23 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
             this.movieTitle = (TextView) itemView.findViewById(R.id.title);
         }
 
-        public void setMoviePoster(String posterURL) {
-            new DownloadPosterTask(moviePoster).execute(posterURL);
+        public void setMoviePoster(Movie movie) {
+            new DownloadPosterTask(moviePoster).execute(movie);
         }
     }
 
-    private class DownloadPosterTask extends AsyncTask<String, Void, Bitmap> {
+    private class DownloadPosterTask extends AsyncTask<Movie, Void, Bitmap> {
         ImageView bmImage;
+        Movie movie;
 
         public DownloadPosterTask(ImageView bmImage) {
             this.bmImage = bmImage;
         }
 
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
+        @Override
+        protected Bitmap doInBackground(Movie... movies) {
+            movie = movies[0];
+            String urldisplay = movie.getPoster();
             Bitmap poster = null;
             try {
                 InputStream in = new java.net.URL(urldisplay).openStream();
@@ -88,8 +97,10 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
             return poster;
         }
 
+        @Override
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
+            movie.setPosterBitmap(result);
         }
     }
 }

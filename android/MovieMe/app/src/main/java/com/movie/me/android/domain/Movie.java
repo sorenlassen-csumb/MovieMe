@@ -1,5 +1,7 @@
 package com.movie.me.android.domain;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by hargueta on 10/27/16.
  */
@@ -28,6 +30,16 @@ public class Movie {
     private String runtime;
 
     private String poster;
+
+    private Bitmap posterBitmap;
+
+    public Bitmap getPosterBitmap() {
+        return posterBitmap;
+    }
+
+    public void setPosterBitmap(Bitmap posterBitmap) {
+        this.posterBitmap = posterBitmap;
+    }
 
     public String getImdbid() {
         return imdbid;

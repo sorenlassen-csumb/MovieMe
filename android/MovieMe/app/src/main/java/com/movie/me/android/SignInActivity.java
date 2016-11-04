@@ -85,7 +85,9 @@ public class SignInActivity extends  AppCompatActivity implements GoogleApiClien
 
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        Log.d("signIn()", "Launching sign in Activity");
         startActivityForResult(signInIntent, RC_SIGN_IN);
+
         //TODO: Go to next activity. Home screen
     }
 
@@ -157,17 +159,27 @@ public class SignInActivity extends  AppCompatActivity implements GoogleApiClien
             handleSignInResult(result);
         }
     }
+
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
+        Log.d(TAG, "Result: " + result.toString());
+
+//        GoogleSignInAccount acc = result.getSignInAccount();
+//        Log.d("EMAIL", acc.getEmail());
+//        Log.d("NAME", acc.getDisplayName());
+
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
+            Log.d("EMAIL", "Email: " + result.getSignInAccount().getEmail());
             mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
             updateUI(true);
+            hideProgressDialog();
             Intent i = new Intent(this, SearchMovie.class);
             startActivity(i);
         } else {
             // Signed out, show unauthenticated UI.
+            hideProgressDialog();
             updateUI(false);
         }
     }
@@ -176,9 +188,9 @@ public class SignInActivity extends  AppCompatActivity implements GoogleApiClien
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.sign_in_button:
-                Intent i = new Intent(this, SearchMovie.class);
-                startActivity(i);
-//                signIn();
+//                Intent i = new Intent(this, SearchMovie.class);
+//                startActivity(i);
+                signIn();
                 break;
             case R.id.sign_out_button:
                 signOut();

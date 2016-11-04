@@ -1,4 +1,4 @@
-package com.movie.me.android.util;
+package com.movie.me.android.rest;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +18,6 @@ import java.net.URL;
  * Created by hargueta on 10/27/16.
  */
 public class FetchMovieTask extends AsyncTask<String, Void, String> {
-
     private final String LOG_TAG = FetchMovieTask.class.getSimpleName();
     private Context context;
 
@@ -40,7 +39,9 @@ public class FetchMovieTask extends AsyncTask<String, Void, String> {
         try {
             // Construct the URL for the MovieMe query
             final String MOVIE_BASE_URL =
-                    "http://ec2-35-161-149-205.us-west-2.compute.amazonaws.com:8080/movie/search?";
+                    "http://ec2-35-162-141-107.us-west-2.compute.amazonaws.com:8080/movie/search?";
+
+//            final String MOVIE_BASE_URL = "http:/198.189.249.55:8080/movie/search?";
             final String QUERY_PARAM = "title";
 
             Uri builtUri = Uri.parse(MOVIE_BASE_URL).buildUpon()
@@ -109,9 +110,6 @@ public class FetchMovieTask extends AsyncTask<String, Void, String> {
             String MOVIE_TEXT = result;
             intent.putExtra("result", result);
             context.startActivity(intent);
-
-
         }
     }
-
 }
