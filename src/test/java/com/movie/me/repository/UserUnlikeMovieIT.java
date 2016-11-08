@@ -1,5 +1,6 @@
 package com.movie.me.repository;
 
+import com.movie.me.beans.Neo4jTestConfiguration;
 import com.movie.me.domain.Movie;
 import com.movie.me.domain.User;
 import org.junit.Before;
@@ -21,9 +22,9 @@ import static org.junit.Assert.assertThat;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest()
+@SpringBootTest(classes = Neo4jTestConfiguration.class)
 @ActiveProfiles(profiles = "test")
-public class UserUnlikeMovieTest {
+public class UserUnlikeMovieIT {
     @Autowired
     private UserRepository userRepository;
 

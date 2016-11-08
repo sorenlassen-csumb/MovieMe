@@ -1,10 +1,6 @@
-general:
-    build_dir: server
-machine:
-    services:
-        - neo4j
 test:
     override:
+        - mvn test
         - mvn verify
     post:
         - mkdir -p $CIRCLE_TEST_REPORTS/reports/

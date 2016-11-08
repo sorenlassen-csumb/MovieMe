@@ -1,7 +1,8 @@
 package com.movie.me.repository;
 
 import com.movie.me.domain.Movie;
-import com.movie.me.domain.User;
+
+import com.movie.me.beans.Neo4jTestConfiguration;
 
 import org.junit.Test;
 import org.junit.Before;
@@ -17,13 +18,11 @@ import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest()
+@SpringBootTest(classes = Neo4jTestConfiguration.class)
 @ActiveProfiles(profiles = "test")
-public class MovieRepositoryTest {
+public class MovieFindByImdbIdIT {
     @Autowired
     MovieRepository movieRepository;
 
@@ -67,49 +66,4 @@ public class MovieRepositoryTest {
         assertThat(result, is(nullValue()));
     }
 
-    @Test
-    @DirtiesContext
-    public void testFindByTitleLikeSuccessfulResult() {
-        List<Movie> result = movieRepository.findByTitleLike("star");
-
-        assertThat(result.size(), equalTo(3));
-        assertThat(result, containsInAnyOrder(newHope, empireStrikesBack, returnOfTheJedi));
-    }
-
-    @Test
-    @DirtiesContext
-    public void testFindByTitleLikeEmptyResult() {
-        List<Movie> result = movieRepository.findByTitleLike("The Phantom Menace");
-
-        assertThat(result.isEmpty(), is(true));
-    }
-
-    @Test
-    @DirtiesContext
-    public void testFindByTitleLikeCaseInsensitive() {
-        List<Movie> lowerCase = movieRepository.findByTitleLike("star");
-        List<Movie> upperCase = movieRepository.findByTitleLike("STAR");
-
-        assertThat(lowerCase, equalTo(upperCase));
-    }
-
-    @Test
-    @DirtiesContext
-    public void testCountLikesOfMovieIsZero() {
-        int count = movieRepository.countLikesOf("0004");
-
-        assertThat(count, equalTo(0));
-    }
-
-    @Test
-    @DirtiesContext
-    public void testCountLikesOfMovieIsMoreThanZero() {
-        User samuel = new User();
-        samuel.setMoviesLiked(new HashSet<Movie>(Arrays.asList(newHope)));
-        userRepository.save(samuel);
-
-        int count = movieRepository.countLikesOf("0004");
-
-        assertThat(count, equalTo(1));
-    }
 }
