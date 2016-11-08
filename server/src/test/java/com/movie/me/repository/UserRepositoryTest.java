@@ -26,7 +26,7 @@ import com.movie.me.beans.Neo4jTestConfiguration;
 public class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
-    
+
     @Autowired
     MovieRepository movieRepository;
 
@@ -38,15 +38,15 @@ public class UserRepositoryTest {
         samuel.setUserId("sammy123");
         samuel.setName("Samuel Villavicencio");
         samuel.setEmail("savillavicencio@csumb.edu");
-        
+
         newHope = new Movie();
         newHope.setTitle("Star Wars: Episode IV - A New Hope");
         newHope.setImdbid("0004");
-        
+
         userRepository.save(samuel);
         movieRepository.save(Arrays.asList(newHope));
-        
-        
+
+
         return;
     }
 
@@ -64,21 +64,21 @@ public class UserRepositoryTest {
     public void testLikeNoDuplicates() {
         return;
     }
-    
+
     @Test
     @DirtiesContext
     public void testRetrieveMoviesLikedByNonexistentUser(){
         List<Movie> result = userRepository.retrieveMoviesLikedBy("Pearce");
         assertThat(result.isEmpty(),is(true));
     }
-    
+
     @Test
     @DirtiesContext
     public void testaddUserLikesMovieNonexistentUser(){
         Movie result = userRepository.addUserLikesMovie("Pearce","0004");
         assertThat(result, equalTo(null));
     }
-    
+
     @Test
     @DirtiesContext
     public void testaddUserLikesMovieExistentUser(){
@@ -87,6 +87,6 @@ public class UserRepositoryTest {
     }
 
 
-    
-    
+
+
 }

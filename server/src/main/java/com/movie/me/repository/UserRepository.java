@@ -27,4 +27,9 @@ public interface UserRepository extends GraphRepository<User> {
             "RETURN m")
     Movie addUserLikesMovie(@Param("userid") String userid,
             @Param("imdbid") String imdbid);
+
+    @Query("MATCH (u:USER {USERID:{userid}})-[l:LIKES]-(m:MOVIE {IMDBID:{imdbid}}) " +
+            "DELETE l RETURN m")
+    Movie userUnlikesMovie(@Param("userid") String userid,
+                            @Param("imdbid") String imdbid);
 }

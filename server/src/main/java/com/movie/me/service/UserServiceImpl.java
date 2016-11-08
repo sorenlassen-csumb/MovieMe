@@ -32,4 +32,8 @@ public class UserServiceImpl implements UserService {
     public Movie addUserLikesMovie(String userid, String imdbid) {
         return userRepository.addUserLikesMovie(userid, imdbid);
     }
+
+    public Movie userUnlikesMovie(String userId, String imdbid) {
+        return userRepository.userUnlikesMovie(userId, imdbid);
+    }
 }
