@@ -26,10 +26,10 @@ import java.util.List;
 public class MovieRepositoryTest {
     @Autowired
     MovieRepository movieRepository;
-    
+
     @Autowired
     UserRepository userRepository;
-    
+
     private Movie newHope;
     private Movie empireStrikesBack;
     private Movie returnOfTheJedi;
@@ -39,34 +39,34 @@ public class MovieRepositoryTest {
         newHope = new Movie();
         newHope.setTitle("Star Wars: Episode IV - A New Hope");
         newHope.setImdbid("0004");
-        
+
         empireStrikesBack = new Movie();
         empireStrikesBack.setTitle("Star Wars: Episode V - Empire Strikes Back");
         empireStrikesBack.setImdbid("0008");
-        
+
         returnOfTheJedi = new Movie();
         returnOfTheJedi.setTitle("Star Wars: Episode VI - Return of the Jedi");
         returnOfTheJedi.setImdbid("0016");
-        
+
         movieRepository.save(Arrays.asList(newHope, empireStrikesBack, returnOfTheJedi));
     }
-    
+
     @Test
     @DirtiesContext
     public void testFindByImdbIdSuccessfulResult() {
         Movie result = movieRepository.findByImdbId("0004");
-        
+
         assertThat(result.equals(newHope), is(true));
     }
-    
+
     @Test
     @DirtiesContext
     public void testFindByImdbIdEmptyResult() {
         Movie result = movieRepository.findByImdbId("0001");
-        
+
         assertThat(result, is(nullValue()));
     }
-    
+
     @Test
     @DirtiesContext
     public void testFindByTitleLikeSuccessfulResult() {
@@ -75,7 +75,7 @@ public class MovieRepositoryTest {
         assertThat(result.size(), equalTo(3));
         assertThat(result, containsInAnyOrder(newHope, empireStrikesBack, returnOfTheJedi));
     }
-    
+
     @Test
     @DirtiesContext
     public void testFindByTitleLikeEmptyResult() {
@@ -92,24 +92,24 @@ public class MovieRepositoryTest {
 
         assertThat(lowerCase, equalTo(upperCase));
     }
-    
+
     @Test
     @DirtiesContext
     public void testCountLikesOfMovieIsZero() {
         int count = movieRepository.countLikesOf("0004");
-        
+
         assertThat(count, equalTo(0));
     }
-    
+
     @Test
     @DirtiesContext
     public void testCountLikesOfMovieIsMoreThanZero() {
         User samuel = new User();
         samuel.setMoviesLiked(new HashSet<Movie>(Arrays.asList(newHope)));
         userRepository.save(samuel);
-        
+
         int count = movieRepository.countLikesOf("0004");
-        
+
         assertThat(count, equalTo(1));
     }
 }

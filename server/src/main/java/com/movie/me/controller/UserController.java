@@ -41,4 +41,9 @@ public class UserController {
     public Movie userLikesMovie(@RequestParam(value="userid") String userid, @RequestParam(value="imdbid") String imdbid) {
         return userService.addUserLikesMovie(userid, imdbid);
     }
+
+    @RequestMapping(value="/user/unlikes_movie", method=RequestMethod.GET, produces="application/json")
+    public Movie userUnlikesMovie(@RequestParam(value="userid") String userid, @RequestParam(value="imdbid") String imdbid) {
+        return userService.userUnlikesMovie(userid, imdbid);
+    }
 }
