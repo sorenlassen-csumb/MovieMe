@@ -12,5 +12,6 @@ public interface UserService {
     List<User> findByNameLike(String name);
     List<Movie> retrieveMoviesLikedBy(String userid);
     Movie addUserLikesMovie(String userid, String imdbid);
+    User addUserFriendsUser(String userid1, String userid2);
     Movie userUnlikesMovie(String userid, String imdbid);
 }
