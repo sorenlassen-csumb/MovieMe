@@ -1,7 +1,7 @@
 test:
     override:
-        - mvn test
-        - mvn verify
+        - mvn -e test
+        - mvn -e verify
     post:
         - mkdir -p $CIRCLE_TEST_REPORTS/reports/
         - cp ./*/*-reports/*.xml $CIRCLE_TEST_REPORTS/reports/
