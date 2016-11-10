@@ -27,12 +27,7 @@ public class MovieFindByImdbIdIT {
     @Autowired
     MovieRepository movieRepository;
 
-    @Autowired
-    UserRepository userRepository;
-
     private Movie newHope;
-    private Movie empireStrikesBack;
-    private Movie returnOfTheJedi;
 
     @Before
     public void initialize() {
@@ -40,21 +35,14 @@ public class MovieFindByImdbIdIT {
         newHope.setTitle("Star Wars: Episode IV - A New Hope");
         newHope.setImdbid("0004");
 
-        empireStrikesBack = new Movie();
-        empireStrikesBack.setTitle("Star Wars: Episode V - Empire Strikes Back");
-        empireStrikesBack.setImdbid("0008");
-
-        returnOfTheJedi = new Movie();
-        returnOfTheJedi.setTitle("Star Wars: Episode VI - Return of the Jedi");
-        returnOfTheJedi.setImdbid("0016");
-
-        movieRepository.save(Arrays.asList(newHope, empireStrikesBack, returnOfTheJedi));
+        movieRepository.save(newHope);
     }
 
     @Test
     @DirtiesContext
     public void testFindByImdbIdSuccessfulResult() {
-        Movie result = movieRepository.findByImdbId("0004");
+        String imdbid = newHope.getImdbid();
+        Movie result = movieRepository.findByImdbId(imdbid);
 
         assertThat(result.equals(newHope), is(true));
     }
@@ -62,7 +50,8 @@ public class MovieFindByImdbIdIT {
     @Test
     @DirtiesContext
     public void testFindByImdbIdEmptyResult() {
-        Movie result = movieRepository.findByImdbId("0001");
+        String imdbid = "0001";
+        Movie result = movieRepository.findByImdbId(imdbid);
 
         assertThat(result, is(nullValue()));
     }
