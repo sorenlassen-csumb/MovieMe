@@ -3,6 +3,7 @@ test:
         - mvn -e test
         - mvn -e verify
     post:
+        - rm -rf ~/.m2
         - mkdir -p $CIRCLE_TEST_REPORTS/reports/
         - cp ./*/*-reports/*.xml $CIRCLE_TEST_REPORTS/reports/
         - mvn cobertura:cobertura-integration-test
