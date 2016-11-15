@@ -18,9 +18,6 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-/**
- * Created by Clarissa on 11/14/16.
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Neo4jTestConfiguration.class)
 @ActiveProfiles(profiles = "test")

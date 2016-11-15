@@ -20,9 +20,6 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-/**
- * Created by hargueta on 11/7/16.
- */
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Neo4jTestConfiguration.class)

@@ -16,6 +16,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.Assert.assertThat;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Neo4jTestConfiguration.class)
 @ActiveProfiles(profiles = "test")
@@ -49,8 +51,8 @@ public class MovieFindByTitleIT {
     public void testFindByTitleLikeSuccessfulResult() {
         List<Movie> result = movieRepository.findByTitleLike("star");
 
-        Assert.assertThat(result.size(), Matchers.equalTo(3));
-        Assert.assertThat(result, Matchers.containsInAnyOrder(newHope, empireStrikesBack, returnOfTheJedi));
+        assertThat(result.size(), Matchers.equalTo(3));
+        assertThat(result, Matchers.containsInAnyOrder(newHope, empireStrikesBack, returnOfTheJedi));
     }
 
     @Test
@@ -58,7 +60,7 @@ public class MovieFindByTitleIT {
     public void testFindByTitleLikeEmptyResult() {
         List<Movie> result = movieRepository.findByTitleLike("The Phantom Menace");
 
-        Assert.assertThat(result.isEmpty(), Matchers.is(true));
+        assertThat(result.isEmpty(), Matchers.is(true));
     }
 
     @Test
@@ -67,6 +69,6 @@ public class MovieFindByTitleIT {
         List<Movie> lowerCase = movieRepository.findByTitleLike("star");
         List<Movie> upperCase = movieRepository.findByTitleLike("STAR");
 
-        Assert.assertThat(lowerCase, Matchers.equalTo(upperCase));
+        assertThat(lowerCase, Matchers.equalTo(upperCase));
     }
 }

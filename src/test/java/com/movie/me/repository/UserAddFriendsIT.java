@@ -5,6 +5,7 @@ import com.movie.me.domain.Movie;
 import com.movie.me.domain.User;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,9 +20,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-/**
- * Created by Clarissa on 11/14/16.
- */
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Neo4jTestConfiguration.class)
 @ActiveProfiles(profiles = "test")

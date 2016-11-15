@@ -17,6 +17,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.Arrays;
 import java.util.HashSet;
 
+import static org.junit.Assert.assertThat;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Neo4jTestConfiguration.class)
 @ActiveProfiles(profiles = "test")
@@ -48,7 +50,7 @@ public class MovieCountLikesOfMovieIT {
     public void testCountLikesOfMovieIsZero() {
         int count = movieRepository.countLikesOf("0004");
 
-        Assert.assertThat(count, Matchers.equalTo(0));
+        assertThat(count, Matchers.equalTo(0));
     }
 
     @Test
@@ -60,6 +62,6 @@ public class MovieCountLikesOfMovieIT {
 
         int count = movieRepository.countLikesOf("0004");
 
-        Assert.assertThat(count, Matchers.equalTo(1));
+        assertThat(count, Matchers.equalTo(1));
     }
 }
