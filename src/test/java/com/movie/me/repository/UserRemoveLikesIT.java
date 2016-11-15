@@ -13,8 +13,11 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -24,29 +27,46 @@ import static org.junit.Assert.assertThat;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Neo4jTestConfiguration.class)
 @ActiveProfiles(profiles = "test")
-public class UserUnlikeMovieIT {
+public class UserRemoveLikesIT {
     @Autowired
     private UserRepository userRepository;
 
     @Autowired
     private MovieRepository movieRepository;
 
-    private User hugo;
-    private Movie interstellar;
+    private User hugo, clarissa, samuel;
+    private Movie interstellar, newHope;
 
     @Before
     public void initialize() {
         hugo = new User();
-
         hugo.setName("Hugo Argueta");
         hugo.setEmail("hugoargueta@gmail.com");
         hugo.setUserId("1001");
+
+        samuel = new User();
+        samuel.setUserId("sammy123");
+        samuel.setName("Samuel Villavicencio");
+        samuel.setEmail("savillavicencio@csumb.edu");
+
+        clarissa = new User();
+        clarissa.setUserId("clari123");
+        clarissa.setName("Clarissa Vazquez");
+        clarissa.setEmail("cvasquez-ramo@csumb.edu");
+
+        newHope = new Movie();
+        newHope.setTitle("Star Wars: Episode IV - A New Hope");
+        newHope.setImdbid("0004");
 
         interstellar = new Movie();
         interstellar.setTitle("Interstellar");
         interstellar.setImdbid("tt0030832");
 
         userRepository.save(hugo);
+        userRepository.save(samuel);
+        userRepository.save(clarissa);
+        movieRepository.save(newHope);
+        movieRepository.save(Arrays.asList(newHope));
         movieRepository.save(Arrays.asList(interstellar));
     }
 
@@ -60,9 +80,11 @@ public class UserUnlikeMovieIT {
 
     @Test
     @DirtiesContext
-    public void testuserUnlikesMovieNonexistentLike(){
+    public void testUserUnlikesMovieNonexistentLike(){
         Movie result = userRepository.userUnlikesMovie(hugo.getUserId(), interstellar.getImdbid());
         assertThat(result, equalTo(null));
     }
+
+
 
 }
