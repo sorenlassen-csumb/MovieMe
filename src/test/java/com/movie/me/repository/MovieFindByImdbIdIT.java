@@ -7,6 +7,7 @@ import com.movie.me.beans.Neo4jTestConfiguration;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.runner.RunWith;
+import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -14,7 +15,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 import java.util.Arrays;
