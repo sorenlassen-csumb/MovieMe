@@ -36,6 +36,10 @@ public class UserServiceImpl implements UserService {
     public User addUserFriendsUser(String userid1, String userid2) {
     	return userRepository.addUserFriendsUser(userid1, userid2);
     }
+
+    public User userRemovesFriend(String userid1, String userid2) {
+        return userRepository.userRemovesFriend(userid1, userid2);
+    }
     
     public List<User> retrieveFriendsOf(String userid) {
     	return userRepository.retrieveFriendsOf(userid);
