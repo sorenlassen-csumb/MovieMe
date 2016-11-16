@@ -34,6 +34,9 @@ public class User {
 	@Relationship(type="LIKES")
 	private Set<Movie> moviesLiked;
 
+	@Relationship(type="FRIENDS")
+	private Set<User> friends;
+
     public Long getId() {
         return id;
     }
@@ -72,6 +75,14 @@ public class User {
 
 	public void setMoviesLiked(Set<Movie> moviesLiked) {
 		this.moviesLiked = moviesLiked;
+	}
+
+	public Set<User> getFriends() {
+		return friends;
+	}
+
+	public void setFriends(Set<User> friends) {
+		this.friends = friends;
 	}
 
 	@Override

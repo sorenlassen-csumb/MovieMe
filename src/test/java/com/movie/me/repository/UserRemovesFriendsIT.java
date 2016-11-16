@@ -3,7 +3,6 @@ package com.movie.me.repository;
 import com.movie.me.beans.Neo4jTestConfiguration;
 import com.movie.me.domain.Movie;
 import com.movie.me.domain.User;
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
@@ -25,15 +24,12 @@ import static org.junit.Assert.assertThat;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Neo4jTestConfiguration.class)
 @ActiveProfiles(profiles = "test")
-public class UserAddFriendsIT {
+public class UserRemovesFriendsIT {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    MovieRepository movieRepository;
-
-    private User samuel, clarissa, hugo;
-    private Movie newHope;
+    private User samuel;
+    private User clarissa;
     @Before
     public void initialize() {
         samuel = new User();
@@ -46,47 +42,25 @@ public class UserAddFriendsIT {
         clarissa.setName("Clarissa Vazquez");
         clarissa.setEmail("cvasquez-ramo@csumb.edu");
 
-        hugo = new User();
-        hugo.setName("Hugo Argueta");
-        hugo.setEmail("hugoargueta@gmail.com");
-        hugo.setUserId("1001");
-
-        newHope = new Movie();
-        newHope.setTitle("Star Wars: Episode IV - A New Hope");
-        newHope.setImdbid("0004");
-
         userRepository.save(samuel);
         userRepository.save(clarissa);
-        userRepository.save(hugo);
-        movieRepository.save(newHope);
-
-
-        movieRepository.save(Arrays.asList(newHope));
-
 
         return;
     }
 
     @Test
     @DirtiesContext
-    public void testAddUserFriendsExistentUser() {
-        User result = userRepository.addUserFriendsUser(samuel.getUserId(), clarissa.getUserId());
+    public void testUserRemovesExistentFriend() {
+        userRepository.addUserFriendsUser(samuel.getUserId(), clarissa.getUserId());
+        User result = userRepository.userRemovesFriend(samuel.getUserId(), clarissa.getUserId());
         assertThat(result, equalTo(clarissa));
     }
 
     @Test
     @DirtiesContext
-    public void testAddUserFriendsNonexistentUser() {
-        User result = userRepository.addUserFriendsUser(samuel.getUserId(), "Pearce");
+    public void testUserRemovesNonexistentFriend() {
+        User result = userRepository.userRemovesFriend(samuel.getUserId(), "Pearce");
         assertThat(result, equalTo(null));
     }
 
-    @Test
-    @DirtiesContext
-    public void testRetrieveFriendsOfExistentUser() {
-        userRepository.addUserFriendsUser(samuel.getUserId(), clarissa.getUserId());
-        userRepository.addUserFriendsUser(samuel.getUserId(), hugo.getUserId());
-        List<User> result = userRepository.retrieveFriendsOf(samuel.getUserId());
-        assertThat(result, Matchers.containsInAnyOrder(hugo, clarissa));
-    }
 }
