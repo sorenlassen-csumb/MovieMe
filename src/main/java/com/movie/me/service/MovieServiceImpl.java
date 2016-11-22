@@ -18,12 +18,4 @@ public class MovieServiceImpl implements MovieService {
 
         return new ArrayList<Movie>();
     }
-
-    public List<Movie> getRecommendationForUser(String userid) {
-        if( userid == null ) {
-            return new ArrayList<>();
-        }
-
-        return movieRepository.getRecommendationForUser(userid);
-    }
 }
