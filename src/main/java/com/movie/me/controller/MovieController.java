@@ -21,9 +21,4 @@ public class MovieController {
     public List<Movie> searchForMovie(@RequestParam(value="title") String title) {
         return movieService.findByTitleLike(title);
     }
-
-    @RequestMapping(value="/movie/recommendations", method=RequestMethod.GET, produces="application/json")
-    public List<Movie> getRecommendationForUser(@RequestParam(value="userid") String userid) {
-        return movieService.getRecommendationForUser(userid);
-    }
 }

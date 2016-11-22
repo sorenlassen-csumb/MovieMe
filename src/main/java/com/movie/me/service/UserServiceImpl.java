@@ -48,4 +48,12 @@ public class UserServiceImpl implements UserService {
     public Movie userUnlikesMovie(String userId, String imdbid) {
         return userRepository.userUnlikesMovie(userId, imdbid);
     }
+
+    public List<Movie> getRecommendationForUser(String userid) {
+        if( userid == null ) {
+            return new ArrayList<>();
+        }
+
+        return userRepository.getRecommendationForUser(userid);
+    }
 }
