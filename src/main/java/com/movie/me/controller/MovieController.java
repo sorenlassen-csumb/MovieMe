@@ -17,7 +17,7 @@ public class MovieController {
     @Autowired
     MovieService movieService;
 
-    @RequestMapping(value="/movie/search", method= RequestMethod.GET, produces="application/json")
+    @RequestMapping(value="/movie/search", method=RequestMethod.GET, produces="application/json")
     public List<Movie> searchForMovie(@RequestParam(value="title") String title) {
         return movieService.findByTitleLike(title);
     }

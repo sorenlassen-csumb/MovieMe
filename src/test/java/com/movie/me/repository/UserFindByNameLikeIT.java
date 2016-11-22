@@ -11,13 +11,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.Matchers.*;
 
 import org.junit.Test;
 import org.junit.Before;
 
 import com.movie.me.domain.User;
-import org.hamcrest.Matchers;
 import com.movie.me.beans.Neo4jTestConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -60,14 +59,14 @@ public class UserFindByNameLikeIT {
     @DirtiesContext
     public void testFindByNameLikeEmptyResult() {
         List<User> result = userRepository.findByNameLike("so");
-        assertThat(result.isEmpty(), Matchers.is(true));
+        assertThat(result.isEmpty(), is(true));
     }
 
     @Test
     @DirtiesContext
     public void testFindByNameLikeSuccessfulResult() {
         List<User> result = userRepository.findByNameLike("sam");
-        assertThat(result, Matchers.containsInAnyOrder(samuel, sam));
+        assertThat(result, containsInAnyOrder(samuel, sam));
     }
 
 
