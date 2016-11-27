@@ -18,4 +18,55 @@ public class MovieServiceImpl implements MovieService {
 
         return new ArrayList<Movie>();
     }
+
+    public List<Movie> findByRated(String rated) {
+        if( rated.equalsIgnoreCase("g") || rated.equalsIgnoreCase("pg") ||
+            rated.equalsIgnoreCase("pg-13") || rated.equalsIgnoreCase("r") ||
+            rated.equalsIgnoreCase("nc-17") ) {
+            return movieRepository.findByRated(rated);
+        }
+
+        return new ArrayList<Movie>();
+    }
+
+    public List<Movie> findByReleaseDate(String released) {
+        if( released.length() > 0 ) {
+            return movieRepository.findByReleaseDate(released);
+        }
+
+        return new ArrayList<Movie>();
+    }
+
+    public List<Movie> findByActorLike(String actor) {
+        if( actor.length() > 0 ) {
+            return movieRepository.findByActorLike(actor);
+        }
+
+        return new ArrayList<Movie>();
+    }
+
+    public List<Movie> findByWriterLike(String writer) {
+        if( writer.length() > 0 ) {
+            return movieRepository.findByWriterLike(writer);
+        }
+
+        return new ArrayList<Movie>();
+    }
+
+    public List<Movie> findByDirectorLike(String director) {
+        if( director.length() > 0 ) {
+            return movieRepository.findByDirectorLike(director);
+        }
+
+        return new ArrayList<Movie>();
+    }
+
+    public List<Movie> findByGenreLike(String genre) {
+        if( genre.length() > 0 ) {
+            return movieRepository.findByGenreLike(genre);
+        }
+
+        return new ArrayList<Movie>();
+    }
+
 }
