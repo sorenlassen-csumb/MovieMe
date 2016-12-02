@@ -1,6 +1,8 @@
 package com.movie.me.controller;
 
 import java.util.List;
+
+import com.movie.me.utility.GoogleUserAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +28,16 @@ public class UserController {
 
 		return user;
 	}
+
+    @RequestMapping(value="/user/signin", method=RequestMethod.GET, produces="application/json")
+    public User userSignIn(@RequestParam(value="idToken") String idToken) {
+        User user = GoogleUserAuthentication.authenticate(idToken);
+        if(user != null) {
+            return userService.userSignIn(user);
+        }
+
+        return null;
+    }
 
     @RequestMapping(value="/user/search", method=RequestMethod.GET, produces="application/json")
     public List<User> searchForUser(@RequestParam(value="name") String name) {

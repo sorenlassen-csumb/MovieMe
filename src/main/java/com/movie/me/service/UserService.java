@@ -17,4 +17,6 @@ public interface UserService {
     User userRemovesFriend(String userid1, String userid2);
     List<User> retrieveFriendsOf(String userid);
     List<Movie> getRecommendationForUser(String userid);
+    User userSignIn(User user);
+
 }

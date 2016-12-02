@@ -8,7 +8,6 @@ import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.Relationship;
 
-import com.movie.me.domain.Movie;
 
 @NodeEntity(label="USER")
 public class User {
@@ -53,6 +52,14 @@ public class User {
         this.userid = userid;
     }
 
+    public String getPhotoURI() {
+		return photoURI;
+    }
+
+	public void setPhotoURI(String photoURI) {
+		this.photoURI = photoURI;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -83,6 +90,14 @@ public class User {
 
 	public void setFriends(Set<User> friends) {
 		this.friends = friends;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+	public String getAge() {
+		return age;
 	}
 
 	@Override

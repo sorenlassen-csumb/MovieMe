@@ -56,4 +56,14 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.getRecommendationForUser(userid);
     }
+
+    public User userSignIn(User user) {
+        if(userRepository.findByUserId(user.getUserId()) != null) {
+            return userRepository.findByUserId(user.getUserId());
+        }
+        else {
+            return userRepository.createUserNode(user.getName(), user.getAge(), user.getEmail());
+
+        }
+    }
 }
