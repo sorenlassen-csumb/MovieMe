@@ -15,6 +15,10 @@ public interface UserRepository extends GraphRepository<User> {
             "RETURN u")
     User findByUserId(@Param("userid") String userid);
 
+    @Query("CREATE (u:USER {NAME:{name}, AGE:{age}, EMAIL:{email}}) " +
+            "RETURN u")
+    User createUserNode(@Param("name") String name, @Param("age") String age, @Param("email") String email);
+
     @Query("MATCH (u:USER) " +
             "WHERE u.NAME =~ ('(?i).*'+{name}+'.*')" + 
             "RETURN u")
@@ -68,4 +72,5 @@ public interface UserRepository extends GraphRepository<User> {
             "RETURN m ORDER BY hits DESC " +
             "LIMIT 30")
     List<Movie> getRecommendationForUser(@Param("userid") String userid);
+
 }
