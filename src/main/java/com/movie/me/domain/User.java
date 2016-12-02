@@ -3,6 +3,7 @@ package com.movie.me.domain;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.neo4j.cypher.internal.frontend.v2_3.ast.functions.Str;
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Property;
@@ -53,6 +54,14 @@ public class User {
         this.userid = userid;
     }
 
+    public String getPhotoURI() {
+		return photoURI;
+    }
+
+	public void setPhotoURI(String photoURI) {
+		this.photoURI = photoURI;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -83,6 +92,14 @@ public class User {
 
 	public void setFriends(Set<User> friends) {
 		this.friends = friends;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+	public String getAge() {
+		return age;
 	}
 
 	@Override
