@@ -3,13 +3,11 @@ package com.movie.me.domain;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.neo4j.cypher.internal.frontend.v2_3.ast.functions.Str;
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.Relationship;
 
-import com.movie.me.domain.Movie;
 
 @NodeEntity(label="USER")
 public class User {
