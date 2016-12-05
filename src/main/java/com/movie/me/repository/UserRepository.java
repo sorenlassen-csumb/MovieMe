@@ -29,14 +29,6 @@ public interface UserRepository extends GraphRepository<User> {
             "RETURN m")
     List<Movie> retrieveMoviesLikedBy(@Param("userid") String userid);
 
-    @Query("MATCH (:USER {USERID:{userid}}) " +
-            "-[:LIKES]->(:MOVIE) " +
-            "<-[:LIKES]-(:USER) " +
-            "-[:LIKES]->(m:MOVIE) " +
-            "WITH COUNT(m) AS hits " +
-            "RETURN m ORDER BY hits DESC")
-    List<Movie> retrieveRecommendationsFor(@Param("userid") String userid);
-
     @Query("MATCH (u:USER {USERID:{userid}}), " +
             "(m:MOVIE {IMDBID:{imdbid}}) " +
             "MERGE (u)-[:LIKES]->(m) " +
