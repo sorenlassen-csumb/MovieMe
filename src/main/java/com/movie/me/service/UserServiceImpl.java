@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
             return userRepository.findByUserId(user.getUserId());
         }
         else {
-            return userRepository.createUserNode(user.getName(), user.getAge(), user.getEmail());
+            return userRepository.createUserNode(user.getName(), user.getAge(), user.getEmail(), user.getUserId(), user.getPhotoURI());
 
         }
     }

@@ -15,9 +15,9 @@ public interface UserRepository extends GraphRepository<User> {
             "RETURN u")
     User findByUserId(@Param("userid") String userid);
 
-    @Query("CREATE (u:USER {NAME:{name}, AGE:{age}, EMAIL:{email}}) " +
+    @Query("CREATE (u:USER {NAME:{name}, AGE:{age}, EMAIL:{email}, USERID:{userid}, PHOTO_URI:{photoURI}}) " +
             "RETURN u")
-    User createUserNode(@Param("name") String name, @Param("age") String age, @Param("email") String email);
+    User createUserNode(@Param("name") String name, @Param("age") String age, @Param("email") String email, @Param("userid") String userid, @Param("photoURI") String photoURI);
 
     @Query("MATCH (u:USER) " +
             "WHERE u.NAME =~ ('(?i).*'+{name}+'.*')" + 

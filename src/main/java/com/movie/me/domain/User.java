@@ -104,4 +104,20 @@ public class User {
 	public String toString() {
 		return this.email;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		User user = (User) o;
+
+		if (!userid.equals(user.userid)) return false;
+		if (!name.equals(user.name)) return false;
+		if (!photoURI.equals(user.photoURI)) return false;
+		if (!age.equals(user.age)) return false;
+		return email.equals(user.email);
+
+	}
+
 }
