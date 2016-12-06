@@ -4,7 +4,6 @@ import com.movie.me.beans.Neo4jTestConfiguration;
 import com.movie.me.domain.Movie;
 import com.movie.me.domain.User;
 import org.hamcrest.Matchers;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

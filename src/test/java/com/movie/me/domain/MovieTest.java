@@ -23,7 +23,7 @@ public class MovieTest {
     }
 
     @Test
-    public void testSetRatedSuccess() {
+    public void testsetRatedSuccess() {
         String rated = "PG";
         newHope.setRated(rated);
 
@@ -41,7 +41,7 @@ public class MovieTest {
     }
 
     @Test
-    public void testSetWriterSuccess() {
+    public void testsetWriterSuccess() {
         String writer = "George Lucas";
         newHope.setWriter(writer);
 
@@ -49,7 +49,7 @@ public class MovieTest {
     }
 
     @Test
-    public void testSetDirectorSuccess() {
+    public void testsetDirectorSuccess() {
         String director = "George Lucas";
         newHope.setDirector(director);
 
@@ -57,7 +57,7 @@ public class MovieTest {
     }
 
     @Test
-    public void testSetActorsSuccess() {
+    public void testsetActorsSuccess() {
         String actors = "Mark Hamill, Harrison Ford, Carrie Fisher";
         newHope.setActors(actors);
 
@@ -90,7 +90,7 @@ public class MovieTest {
     }
 
     @Test
-    public void testSetTitleSuccess() {
+    public void testsetTitleSuccess() {
         String title = "Star Wars: Episode IV - A New Hope";
         newHope.setTitle(title);
 
@@ -106,9 +106,9 @@ public class MovieTest {
     }
 
     @Test
-    public void testSetReleaseDateSuccess() {
+    public void testsetReleasedateSuccess() {
         String releaseDate = "25 May 1977";
-        newHope.setReleaseDate(releaseDate);
+        newHope.setReleasedate(releaseDate);
 
         assertThat(newHope.getReleaseDate(), equalTo(releaseDate));
     }

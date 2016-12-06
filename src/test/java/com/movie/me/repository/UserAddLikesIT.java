@@ -60,9 +60,9 @@ public class UserAddLikesIT {
     @Test
     @DirtiesContext
     public void testUserLikesMoviesAddsNoDuplicates() {
-        userRepository.addUserLikesMovie("sammy123", "0004");
-        userRepository.addUserLikesMovie("sammy123", "0004");
-        List<Movie> result = userRepository.retrieveMoviesLikedBy("sammy123");
+        movieRepository.addUserLikesMovie("sammy123", "0004");
+        movieRepository.addUserLikesMovie("sammy123", "0004");
+        List<Movie> result = movieRepository.retrieveMoviesLikedBy("sammy123");
         int count = Collections.frequency(result, newHope);
         assertThat(count, equalTo(1));
     }
@@ -70,21 +70,21 @@ public class UserAddLikesIT {
     @Test
     @DirtiesContext
     public void testUserLikesNonexistentMovie() {
-        Movie result = userRepository.addUserLikesMovie("sammy123", "0001");
+        Movie result = movieRepository.addUserLikesMovie("sammy123", "0001");
         assertThat(result, equalTo(null));
     }
 
     @Test
     @DirtiesContext
     public void testNonexistentUserLikesMovie() {
-        Movie result = userRepository.addUserLikesMovie("Pearce","0004");
+        Movie result = movieRepository.addUserLikesMovie("Pearce","0004");
         assertThat(result, equalTo(null));
     }
 
     @Test
     @DirtiesContext
     public void testExistentUserLikesMovie() {
-        Movie result = userRepository.addUserLikesMovie("sammy123","0004");
+        Movie result = movieRepository.addUserLikesMovie("sammy123","0004");
         assertThat(result, equalTo(newHope));
     }
 }

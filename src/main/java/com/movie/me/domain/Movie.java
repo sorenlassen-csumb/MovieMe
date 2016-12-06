@@ -145,7 +145,7 @@ public class Movie {
 		return releaseDate;
 	}
 
-	public void setReleaseDate(String releaseDate) {
+	public void setReleasedate(String releaseDate) {
 		this.releaseDate = releaseDate;
 	}
 	

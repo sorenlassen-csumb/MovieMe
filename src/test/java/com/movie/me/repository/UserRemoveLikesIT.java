@@ -13,8 +13,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -70,15 +68,15 @@ public class UserRemoveLikesIT {
     @Test
     @DirtiesContext
     public void testUserUnlikesMovieExistentLike(){
-        userRepository.addUserLikesMovie(hugo.getUserId(), interstellar.getImdbid());
-        Movie result = userRepository.userUnlikesMovie(hugo.getUserId(), interstellar.getImdbid());
+        movieRepository.addUserLikesMovie(hugo.getUserId(), interstellar.getImdbid());
+        Movie result = movieRepository.userUnlikesMovie(hugo.getUserId(), interstellar.getImdbid());
         assertThat(result, equalTo(interstellar));
     }
 
     @Test
     @DirtiesContext
     public void testUserUnlikesMovieNonexistentLike(){
-        Movie result = userRepository.userUnlikesMovie(hugo.getUserId(), interstellar.getImdbid());
+        Movie result = movieRepository.userUnlikesMovie(hugo.getUserId(), interstellar.getImdbid());
         assertThat(result, equalTo(null));
     }
 

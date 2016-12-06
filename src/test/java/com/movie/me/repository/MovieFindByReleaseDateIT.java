@@ -34,7 +34,7 @@ public class MovieFindByReleaseDateIT {
         newHope = new Movie();
         newHope.setTitle("Star Wars: Episode IV - A New Hope");
         newHope.setImdbid("0004");
-        newHope.setReleaseDate("01 January 0001");
+        newHope.setReleasedate("01 January 0001");
 
         movieRepository.save(newHope);
     }

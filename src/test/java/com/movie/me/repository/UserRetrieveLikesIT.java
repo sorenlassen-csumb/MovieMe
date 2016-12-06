@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -57,16 +57,18 @@ public class UserRetrieveLikesIT {
     @Test
     @DirtiesContext
     public void testRetrieveMoviesLikedByNonexistentUser() {
-        List<Movie> result = userRepository.retrieveMoviesLikedBy("Pearce");
+        List<Movie> result = movieRepository.retrieveMoviesLikedBy("Pearce");
         assertThat(result.isEmpty(), is(true));
     }
 
     @Test
     @DirtiesContext
     public void testRetrieveMoviesLikedByExistentUser() {
-        userRepository.addUserLikesMovie("sammy123", "0004");
-        List<Movie> result = userRepository.retrieveMoviesLikedBy("sammy123");
-        assertThat(result.isEmpty(), is(false));
+        movieRepository.addUserLikesMovie("sammy123", "0004");
+        List<Movie> result = movieRepository.retrieveMoviesLikedBy("sammy123");
+        assertThat(result.size(), equalTo(1));
+        assertThat(result.get(0), equalTo(newHope));
+        assertThat(result instanceof List<?>, is(true));
     }
 
 }

@@ -24,22 +24,6 @@ public interface UserRepository extends GraphRepository<User> {
             "RETURN u")
     List<User> findByNameLike(@Param("name") String name);
 
-    @Query("MATCH (:USER {USERID:{userid}}) " +
-            "-[:LIKES]->(m:MOVIE) " +
-            "RETURN m")
-    List<Movie> retrieveMoviesLikedBy(@Param("userid") String userid);
-
-    @Query("MATCH (u:USER {USERID:{userid}}), " +
-            "(m:MOVIE {IMDBID:{imdbid}}) " +
-            "MERGE (u)-[:LIKES]->(m) " +
-            "RETURN m")
-    Movie addUserLikesMovie(@Param("userid") String userid,
-            @Param("imdbid") String imdbid);
-
-    @Query("MATCH (u:USER {USERID:{userid}})-[l:LIKES]-(m:MOVIE {IMDBID:{imdbid}}) " +
-            "DELETE l RETURN m")
-    Movie userUnlikesMovie(@Param("userid") String userid,
-                           @Param("imdbid") String imdbid);
 /*
     @Query("MATCH (u1:USER {USERID:{userid1}}), " + 
     	   "(u2:USER {USERID:{userid2}}) " + 
@@ -56,13 +40,4 @@ public interface UserRepository extends GraphRepository<User> {
             "RETURN u")
     List<User> retrieveFriendsOf(@Param("userid") String userid);
 */
-    @Query("MATCH(u:USER {USERID:{userid}})" +
-            "-[:LIKES]->(:MOVIE)<-[:LIKES]-(:USER)" +
-            "-[:LIKES]->(m:MOVIE) " +
-            "WHERE NOT (u)-[:LIKES]->(m) " +
-            "WITH m, COUNT(m) AS hits " +
-            "RETURN m ORDER BY hits DESC " +
-            "LIMIT 30")
-    List<Movie> getRecommendationForUser(@Param("userid") String userid);
-
 }

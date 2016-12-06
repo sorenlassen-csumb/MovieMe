@@ -1,5 +1,6 @@
 package com.movie.me.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.movie.me.utility.GoogleUserAuthentication;
@@ -46,7 +47,8 @@ public class UserController {
     
     @RequestMapping(value="/user/view_likes", method=RequestMethod.GET, produces="application/json")
     public List<Movie> moviesLikedByUser(@RequestParam(value="userid") String userid) {
-        return userService.retrieveMoviesLikedBy(userid);
+        List<Movie> movies = userService.retrieveMoviesLikedBy(userid);
+        return movies;
     }
 
     /*@RequestMapping(value="user/adds_friend", method=RequestMethod.GET, produces="application/json")

@@ -49,4 +49,30 @@ public interface MovieRepository extends GraphRepository<Movie> {
             "<-[l:LIKES]-() " + 
             "RETURN COUNT(l)")
     int countLikesOf(@Param("imdbid") String imdbid);
+
+    @Query("MATCH (:USER {USERID:{userid}}) " +
+            "-[:LIKES]->(m:MOVIE) " +
+            "RETURN m")
+    List<Movie> retrieveMoviesLikedBy(@Param("userid") String userid);
+
+    @Query("MATCH(u:USER {USERID:{userid}})" +
+            "-[:LIKES]->(:MOVIE)<-[:LIKES]-(:USER)" +
+            "-[:LIKES]->(m:MOVIE) " +
+            "WHERE NOT (u)-[:LIKES]->(m) " +
+            "WITH m, COUNT(m) AS hits " +
+            "RETURN m ORDER BY hits DESC " +
+            "LIMIT 30")
+    List<Movie> getRecommendationForUser(@Param("userid") String userid);
+
+    @Query("MATCH (u:USER {USERID:{userid}}), " +
+            "(m:MOVIE {IMDBID:{imdbid}}) " +
+            "MERGE (u)-[:LIKES]->(m) " +
+            "RETURN m")
+    Movie addUserLikesMovie(@Param("userid") String userid,
+                            @Param("imdbid") String imdbid);
+
+    @Query("MATCH (u:USER {USERID:{userid}})-[l:LIKES]-(m:MOVIE {IMDBID:{imdbid}}) " +
+            "DELETE l RETURN m")
+    Movie userUnlikesMovie(@Param("userid") String userid,
+                           @Param("imdbid") String imdbid);
 }

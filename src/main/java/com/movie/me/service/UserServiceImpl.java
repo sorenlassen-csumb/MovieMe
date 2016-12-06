@@ -1,5 +1,6 @@
 package com.movie.me.service;
 
+import com.movie.me.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -8,10 +9,14 @@ import java.util.List;
 import com.movie.me.domain.Movie;
 import com.movie.me.domain.User;
 import com.movie.me.repository.UserRepository;
+import org.springframework.core.convert.ConverterNotFoundException;
 
 public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepository;
+
+    @Autowired
+    MovieRepository movieRepository;
 
 	public User findById(Long id) {
 		return userRepository.findOne(id);
@@ -26,11 +31,20 @@ public class UserServiceImpl implements UserService {
     }
 
     public List<Movie> retrieveMoviesLikedBy(String userid) {
-        return userRepository.retrieveMoviesLikedBy(userid);
+        List<Movie> movies = new ArrayList<>();
+        try {
+            movies = movieRepository.retrieveMoviesLikedBy(userid);
+        } catch(ConverterNotFoundException e) {
+            e.printStackTrace();
+            System.out.println(e.getSourceType());
+            System.out.println(e.getTargetType());
+        }
+
+        return movies;
     }
     
     public Movie addUserLikesMovie(String userid, String imdbid) {
-        return userRepository.addUserLikesMovie(userid, imdbid);
+        return movieRepository.addUserLikesMovie(userid, imdbid);
     }
     
     /*public User addUserFriendsUser(String userid1, String userid2) {
@@ -46,7 +60,7 @@ public class UserServiceImpl implements UserService {
     }*/
 
     public Movie userUnlikesMovie(String userId, String imdbid) {
-        return userRepository.userUnlikesMovie(userId, imdbid);
+        return movieRepository.userUnlikesMovie(userId, imdbid);
     }
 
     public List<Movie> getRecommendationForUser(String userid) {
@@ -54,7 +68,7 @@ public class UserServiceImpl implements UserService {
             return new ArrayList<>();
         }
 
-        return userRepository.getRecommendationForUser(userid);
+        return movieRepository.getRecommendationForUser(userid);
     }
 
     public User userSignIn(User user) {

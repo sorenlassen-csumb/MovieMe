@@ -49,8 +49,8 @@ public class UserGetRecommendationForUserIT {
         userRepository.save(samuel);
         userRepository.save(christian);
 
-        List<Movie> recommendationsForSamuel = userRepository.getRecommendationForUser("0004");
-        List<Movie> recommendationsForChristian = userRepository.getRecommendationForUser("0008");
+        List<Movie> recommendationsForSamuel = movieRepository.getRecommendationForUser("0004");
+        List<Movie> recommendationsForChristian = movieRepository.getRecommendationForUser("0008");
 
         assertThat(recommendationsForSamuel.isEmpty(), is(true));
         assertThat(recommendationsForChristian.isEmpty(), is(true));
@@ -74,8 +74,8 @@ public class UserGetRecommendationForUserIT {
         userRepository.save(samuel);
         userRepository.save(christian);
 
-        List<Movie> recommendationsForSamuel = userRepository.getRecommendationForUser("0004");
-        List<Movie> recommendationsForChristian = userRepository.getRecommendationForUser("0008");
+        List<Movie> recommendationsForSamuel = movieRepository.getRecommendationForUser("0004");
+        List<Movie> recommendationsForChristian = movieRepository.getRecommendationForUser("0008");
 
         assertThat(recommendationsForSamuel.isEmpty(), is(true));
         assertThat(recommendationsForChristian.isEmpty(), is(true));
@@ -101,8 +101,8 @@ public class UserGetRecommendationForUserIT {
         userRepository.save(samuel);
         userRepository.save(christian);
 
-        List<Movie> recommendationsForSamuel = userRepository.getRecommendationForUser("0004");
-        List<Movie> moviesLikedBySamuel = userRepository.retrieveMoviesLikedBy("0004");
+        List<Movie> recommendationsForSamuel = movieRepository.getRecommendationForUser("0004");
+        List<Movie> moviesLikedBySamuel = movieRepository.retrieveMoviesLikedBy("0004");
 
         assertThat(recommendationsForSamuel.isEmpty(), is(false));
         assertThat(moviesLikedBySamuel, not(containsInAnyOrder(recommendationsForSamuel)));
@@ -130,7 +130,7 @@ public class UserGetRecommendationForUserIT {
 
         userRepository.save(Arrays.asList(samuel, christian, clarissa));
 
-        List<Movie> recommendationsForSamuel = userRepository.getRecommendationForUser("0004");
+        List<Movie> recommendationsForSamuel = movieRepository.getRecommendationForUser("0004");
 
         assertThat(recommendationsForSamuel.size(), equalTo(2));
         assertThat(recommendationsForSamuel.get(0), equalTo(goneWithTheWind));
