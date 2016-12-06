@@ -49,7 +49,7 @@ public class UserController {
         return userService.retrieveMoviesLikedBy(userid);
     }
 
-    @RequestMapping(value="user/adds_friend", method=RequestMethod.GET, produces="application/json")
+    /*@RequestMapping(value="user/adds_friend", method=RequestMethod.GET, produces="application/json")
     public User addUserFriendsUser(@RequestParam(value="userid1") String userid1, @RequestParam(value="userid2") String userid2) {
         return userService.addUserFriendsUser(userid1, userid2);
     }
@@ -62,7 +62,7 @@ public class UserController {
     @RequestMapping(value="user/retrieve_friends", method=RequestMethod.GET, produces="application/json")
     public List<User> retrieveFriendsOf(@RequestParam(value="userid") String userid) {
         return userService.retrieveFriendsOf(userid);
-    }
+    }*/
     
     @RequestMapping(value="/user/likes_movie", method=RequestMethod.GET, produces="application/json")
     public Movie userLikesMovie(@RequestParam(value="userid") String userid, @RequestParam(value="imdbid") String imdbid) {

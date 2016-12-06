@@ -15,9 +15,9 @@ public interface UserRepository extends GraphRepository<User> {
             "RETURN u")
     User findByUserId(@Param("userid") String userid);
 
-    @Query("CREATE (u:USER {NAME:{name}, AGE:{age}, EMAIL:{email}}) " +
+    @Query("CREATE (u:USER {NAME:{name}, AGE:{age}, EMAIL:{email}, USERID:{userid}, PHOTO_URI:{photoURI}}) " +
             "RETURN u")
-    User createUserNode(@Param("name") String name, @Param("age") String age, @Param("email") String email);
+    User createUserNode(@Param("name") String name, @Param("age") String age, @Param("email") String email, @Param("userid") String userid, @Param("photoURI") String photoURI);
 
     @Query("MATCH (u:USER) " +
             "WHERE u.NAME =~ ('(?i).*'+{name}+'.*')" + 
@@ -40,7 +40,7 @@ public interface UserRepository extends GraphRepository<User> {
             "DELETE l RETURN m")
     Movie userUnlikesMovie(@Param("userid") String userid,
                            @Param("imdbid") String imdbid);
-    
+/*
     @Query("MATCH (u1:USER {USERID:{userid1}}), " + 
     	   "(u2:USER {USERID:{userid2}}) " + 
     	   "MERGE (u1)-[:FRIENDS]->(u2) " +
@@ -55,7 +55,7 @@ public interface UserRepository extends GraphRepository<User> {
             "-[:FRIENDS]->(u:USER) " +
             "RETURN u")
     List<User> retrieveFriendsOf(@Param("userid") String userid);
-
+*/
     @Query("MATCH(u:USER {USERID:{userid}})" +
             "-[:LIKES]->(:MOVIE)<-[:LIKES]-(:USER)" +
             "-[:LIKES]->(m:MOVIE) " +

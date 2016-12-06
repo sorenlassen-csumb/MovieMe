@@ -33,8 +33,8 @@ public class User {
 	@Relationship(type="LIKES")
 	private Set<Movie> moviesLiked;
 
-	@Relationship(type="FRIENDS")
-	private Set<User> friends;
+	//@Relationship(type="FRIENDS")
+	//private Set<User> friends;
 
     public Long getId() {
         return id;
@@ -84,13 +84,13 @@ public class User {
 		this.moviesLiked = moviesLiked;
 	}
 
-	public Set<User> getFriends() {
+	/*public Set<User> getFriends() {
 		return friends;
 	}
 
 	public void setFriends(Set<User> friends) {
 		this.friends = friends;
-	}
+	}*/
 
 	public void setAge(String age) {
 		this.age = age;
@@ -104,4 +104,20 @@ public class User {
 	public String toString() {
 		return this.email;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		User user = (User) o;
+
+		if (!userid.equals(user.userid)) return false;
+		if (!name.equals(user.name)) return false;
+		if (!photoURI.equals(user.photoURI)) return false;
+		if (!age.equals(user.age)) return false;
+		return email.equals(user.email);
+
+	}
+
 }

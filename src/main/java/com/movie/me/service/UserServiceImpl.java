@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.addUserLikesMovie(userid, imdbid);
     }
     
-    public User addUserFriendsUser(String userid1, String userid2) {
+    /*public User addUserFriendsUser(String userid1, String userid2) {
     	return userRepository.addUserFriendsUser(userid1, userid2);
     }
 
@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
     
     public List<User> retrieveFriendsOf(String userid) {
     	return userRepository.retrieveFriendsOf(userid);
-    }
+    }*/
 
     public Movie userUnlikesMovie(String userId, String imdbid) {
         return userRepository.userUnlikesMovie(userId, imdbid);
@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
             return userRepository.findByUserId(user.getUserId());
         }
         else {
-            return userRepository.createUserNode(user.getName(), user.getAge(), user.getEmail());
+            return userRepository.createUserNode(user.getName(), user.getAge(), user.getEmail(), user.getUserId(), user.getPhotoURI());
 
         }
     }
