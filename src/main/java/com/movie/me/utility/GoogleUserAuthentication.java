@@ -44,6 +44,7 @@ public class GoogleUserAuthentication {
                     user.setAge(age);
                     user.setEmail(email);
                     user.setPhotoURI(pictureUrl);
+                    user.setUserId(user.getEmail().substring(0, user.getEmail().indexOf("@")));
 
                     return user;
                 }

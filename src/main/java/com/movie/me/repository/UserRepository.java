@@ -40,7 +40,7 @@ public interface UserRepository extends GraphRepository<User> {
             "DELETE l RETURN m")
     Movie userUnlikesMovie(@Param("userid") String userid,
                            @Param("imdbid") String imdbid);
-    
+/*
     @Query("MATCH (u1:USER {USERID:{userid1}}), " + 
     	   "(u2:USER {USERID:{userid2}}) " + 
     	   "MERGE (u1)-[:FRIENDS]->(u2) " +
@@ -55,7 +55,7 @@ public interface UserRepository extends GraphRepository<User> {
             "-[:FRIENDS]->(u:USER) " +
             "RETURN u")
     List<User> retrieveFriendsOf(@Param("userid") String userid);
-
+*/
     @Query("MATCH(u:USER {USERID:{userid}})" +
             "-[:LIKES]->(:MOVIE)<-[:LIKES]-(:USER)" +
             "-[:LIKES]->(m:MOVIE) " +
